@@ -14,6 +14,10 @@ const {
 
 const { protect, allowTo } = require("../services/authService.js");
 
+const {
+    nestedRouter: nestedReviewRouter,
+} = require("./reviewRoute.js");
+
 const validate = require("../middleware/validateMiddleware.js");
 
 const {
@@ -54,5 +58,7 @@ router.delete(
     validate,
     deleteProduct
 );
+
+router.use("/:productId/reviews", nestedReviewRouter);
 
 module.exports = { router };

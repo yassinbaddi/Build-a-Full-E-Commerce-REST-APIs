@@ -1,6 +1,5 @@
 const { body, param } = require("express-validator");
 
-// Reusable field validators
 const productFields = [
   body("title")
     .optional()
@@ -52,7 +51,6 @@ const productFields = [
     .withMessage("Cover image must be a valid URL"),
 ];
 
-// CREATE
 exports.createProductValidator = [
   body("title").notEmpty().withMessage("title is required"),
   body("slug").notEmpty().withMessage("Slug is required"),
@@ -73,12 +71,10 @@ exports.createProductValidator = [
     .withMessage("Slug must be lowercase"),
 ];
 
-// GET
 exports.getProductValidator = [
   param("id").isMongoId().withMessage("Invalid product ID"),
 ];
 
-// UPDATE
 exports.updateProductValidator = [
   param("id").isMongoId().withMessage("Invalid product ID"),
 
@@ -93,7 +89,6 @@ exports.updateProductValidator = [
     .withMessage("Slug must be lowercase"),
 ];
 
-// DELETE
 exports.deleteProductValidator = [
   param("id").isMongoId().withMessage("Invalid product ID"),
 ];

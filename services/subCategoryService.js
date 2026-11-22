@@ -47,7 +47,6 @@ const createSubCategory = async (req, res, next) => {
   const { name, category } = req.body;
 
   try {
-    // Check if the parent category exists
     const categoryExists = await categoryModel.exists({
       _id: category,
     });
@@ -76,7 +75,6 @@ const updateSubCategory = async (req, res, next) => {
   const { name, category } = req.body;
 
   try {
-    // Check if another subcategory has the same name
     const existingSubCategory = await subCategoryModel.findOne({
       name,
       _id: { $ne: id },
@@ -88,7 +86,6 @@ const updateSubCategory = async (req, res, next) => {
       });
     }
 
-    // Check if the new parent category exists
     const categoryExists = await categoryModel.exists({
       _id: category,
     });

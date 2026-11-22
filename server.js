@@ -7,6 +7,11 @@ const { router: subCategoryRouter } = require("./routes/subCategoryRoute.js");
 const { router: productRouter } = require("./routes/productRoute.js");
 const { router: userRouter } = require("./routes/userRoute.js");
 const { router: authRouter } = require("./routes/authRoute.js");
+const { router: reviewRouter } = require("./routes/reviewRoute.js");
+const { router: wishlistRouter } = require("./routes/wishlistRoute.js");
+const { router: addressRouter } = require("./routes/addressRoute.js");
+const { router: couponRouter } = require("./routes/couponRoute.js");
+const { router: cartRouter } = require("./routes/cartRoute.js");
 const ApiError = require("./utils/apiError.js");
 const errorHandler = require("./middleware/errorMiddleware.js");
 const path = require('path')
@@ -31,6 +36,11 @@ app.use("/subcategories", subCategoryRouter);
 app.use("/products", productRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.use("/reviews", reviewRouter);
+app.use("/wishlist", wishlistRouter);
+app.use("/addresses", addressRouter);
+app.use("/coupons", couponRouter);
+app.use("/cart", cartRouter);
 app.use("/api/payments", paymentRoute);
 
 

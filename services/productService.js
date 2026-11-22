@@ -2,15 +2,12 @@ const productModel = require("../models/productMolel.js");
 const slugify = require("slugify");
 const mongoose = require("mongoose");
 
-// Escape special characters in regular expressions
 const escapeRegex = (value) => {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 
-// Allowed fields for filtering
 const allowedFilterFields = ["price", "ratings"];
 
-// Allowed fields for sorting and selection
 const allowedSortFields = ["title", "price", "ratings", "createdAt"];
 
 const allowedSelectFields = [
@@ -170,10 +167,6 @@ const getProducts = async (req, res) => {
   }
 };
 
-// ==========================================
-// GET SINGLE PRODUCT
-// ==========================================
-
 const getProduct = async (req, res) => {
   const { id } = req.params;
 
@@ -203,10 +196,6 @@ const getProduct = async (req, res) => {
     });
   }
 };
-
-// ==========================================
-// CREATE PRODUCT
-// ==========================================
 
 const createProduct = async (req, res) => {
   try {
@@ -265,10 +254,6 @@ const createProduct = async (req, res) => {
   }
 };
 
-// ==========================================
-// UPDATE PRODUCT
-// ==========================================
-
 const updateProduct = async (req, res) => {
   const { id } = req.params;
 
@@ -279,7 +264,6 @@ const updateProduct = async (req, res) => {
       });
     }
 
-    // Generate slug only when title is provided
     if (req.body.title !== undefined) {
       if (typeof req.body.title !== "string" || !req.body.title.trim()) {
         return res.status(400).json({
@@ -294,7 +278,6 @@ const updateProduct = async (req, res) => {
         strict: true,
       });
 
-      // Check duplicate title, excluding current product
       const existing = await productModel.findOne({
         title: {
           $regex: `^${escapeRegex(req.body.title)}$`,
@@ -344,10 +327,6 @@ const updateProduct = async (req, res) => {
     });
   }
 };
-
-// ==========================================
-// DELETE PRODUCT
-// ==========================================
 
 const deleteProduct = async (req, res) => {
   const { id } = req.params;

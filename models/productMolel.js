@@ -62,12 +62,12 @@ const productSchema = new mongoose.Schema(
     brand: {
       type: String,
     },
-    retingsAverage: {
+    ratingsAverage: {
       type: Number,
       min: 1,
       max: 5,
     },
-    retingsQuantity: {
+    ratingsQuantity: {
       type: Number,
       default: 0,
     },

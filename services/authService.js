@@ -41,14 +41,12 @@ const login = async (req, res, next) => {
             active: true,
         });
 
-        // Check if user exists
         if (!user) {
             return next(
                 new ApiError("Incorrect email or password", 401)
             );
         }
 
-        // Compare passwords
         const isPasswordCorrect = await bcrypt.compare(
             req.body.password,
             user.password
@@ -60,7 +58,6 @@ const login = async (req, res, next) => {
             );
         }
 
-        // Generate JWT
         const token = jwt.sign(
             { userId: user._id },
             process.env.JWT_SECRET,
