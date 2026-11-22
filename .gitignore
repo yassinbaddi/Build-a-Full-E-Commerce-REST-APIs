@@ -1,0 +1,6 @@
+.env
+node_modules
+
+seeCategories.js
+seedProduct.js
+test.js
