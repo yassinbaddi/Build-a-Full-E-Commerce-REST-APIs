@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema(
             required: true,
             minlength: 6,
         },
+        passwordChangedAt: {
+            type: Date,
+            default: undefined
+        },
+
         passwordResetCode: {
             type: String,
             default: undefined

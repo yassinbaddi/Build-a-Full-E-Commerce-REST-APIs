@@ -7,12 +7,14 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon --env-file=.env server.js",
     "start": "NODE_ENV=production node --env-file=.env server.js",
+    "start:prod": "NODE_ENV=production node server.js",
     "test": "nodemon --env-file=.env test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@paypal/paypal-server-sdk": "^2.5.0",
     "bcrypt": "^6.0.0",
     "express": "^5.3.0",
     "express-validator": "^7.3.2",

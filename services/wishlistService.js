@@ -3,7 +3,7 @@ const productModel = require("../models/productMolel.js");
 
 const productPopulate = {
   path: "products",
-  select: "title price priceAfterDiscount imageCover retingsAverage retingsQuantity",
+  select: "title price priceAfterDiscount imageCover ratingsAverage ratingsQuantity",
 };
 
 const getWishlist = async (req, res, next) => {

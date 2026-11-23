@@ -155,6 +155,7 @@ const deleteReview = async (req, res, next) => {
     }
 
     await reviewModel.findOneAndDelete({ _id: req.params.id });
+    await reviewModel.calcProductRatings(review.product);
 
     return res.status(200).json({
       message: "Review deleted successfully",

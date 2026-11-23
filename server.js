@@ -12,9 +12,18 @@ const { router: wishlistRouter } = require("./routes/wishlistRoute.js");
 const { router: addressRouter } = require("./routes/addressRoute.js");
 const { router: couponRouter } = require("./routes/couponRoute.js");
 const { router: cartRouter } = require("./routes/cartRoute.js");
+const { router: orderRouter } = require("./routes/orderRoute.js");
+const { stripeWebhook } = require("./services/paymentService.js");
 const ApiError = require("./utils/apiError.js");
 const errorHandler = require("./middleware/errorMiddleware.js");
 const path = require('path')
+
+// Stripe needs the raw body to verify the webhook signature.
+app.post(
+  "/api/payments/stripe/webhook",
+  express.raw({ type: "application/json" }),
+  stripeWebhook
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +50,7 @@ app.use("/wishlist", wishlistRouter);
 app.use("/addresses", addressRouter);
 app.use("/coupons", couponRouter);
 app.use("/cart", cartRouter);
+app.use("/orders", orderRouter);
 app.use("/api/payments", paymentRoute);
 
 

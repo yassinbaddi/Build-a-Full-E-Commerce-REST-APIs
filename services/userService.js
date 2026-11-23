@@ -175,7 +175,7 @@ const updatePasswordUser = async (req, res, next) => {
 
         const updatedUser = await userModel.findOneAndUpdate(
             { _id: id, active: true },
-            { password: hashedPassword, passwordChangedAt: Date.now() },
+            { password: hashedPassword, passwordChangedAt: new Date() },
             {
                 new: true,
                 runValidators: true

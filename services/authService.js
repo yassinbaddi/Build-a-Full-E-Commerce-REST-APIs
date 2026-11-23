@@ -106,10 +106,15 @@ const protect = async (req, res, next) => {
         }
 
         req.user = user;
-        const passwordChangedAt = Math.trunc(user.passwordChangedAt.getTime() / 1000)
 
-        if (decoded.iat < passwordChangedAt) {
-            throw new ApiError("User recently change his password", 401)
+        if (user.passwordChangedAt) {
+            const passwordChangedAt = Math.trunc(
+                new Date(user.passwordChangedAt).getTime() / 1000
+            );
+
+            if (decoded.iat < passwordChangedAt) {
+                throw new ApiError("User recently change his password", 401)
+            }
         }
 
         next();
